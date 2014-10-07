@@ -2,6 +2,7 @@ package core.elements;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import core.general.GeneralObject;
 
@@ -14,7 +15,8 @@ public class Button extends GeneralObject{
 		button = getGeneralObject();
 	}
 	
-	public String getText(){
-		return button.getText();
+	public void verifyTextIs(String buttonText){
+		String actualButtonText = button.getAttribute("value");
+		Assert.assertTrue(buttonText.equals(actualButtonText));
 	}
 }

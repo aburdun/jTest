@@ -24,6 +24,7 @@ public class GeneralTest {
 		
 		testPage.gender.verifySelectedOptionIs("male");
 		
+		testPage.submitButton.verifyTextIs("Submit");
 		testPage.submitButton.click();
 		
 		firefox.close();
