@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import core.general.GeneralObject;
 
 public class DropDown extends GeneralObject{
+	
 	private static final String XPATCH_FOR_DROPDOWN_OPTION = ".//option";
 	
 	WebElement dropdown;
