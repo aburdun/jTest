@@ -49,5 +49,6 @@ public class GeneralObject {
 	
 	public void click(){
 		generalObject.click();
+		MultiBrowser.waitWhileLoading(browser);
 	}
 }
