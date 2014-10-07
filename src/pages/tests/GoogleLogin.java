@@ -25,4 +25,11 @@ public class GoogleLogin {
 		keepMeLogged = new CheckBox (browser, "id", "PersistentCookie");
 		signIn = new Button (browser, "name", "signIn");
 	}
+	
+	public void loginAs(String user, String pwd){
+		username.setText(user);
+		password.setText(pwd);
+		keepMeLogged.unCheck();
+		signIn.click();
+	}
 }

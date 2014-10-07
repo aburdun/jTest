@@ -11,9 +11,12 @@ public class TestGoogleLogin {
 		firefox.get("http://mail.google.com");
 		GoogleLogin googleLogin = new GoogleLogin (firefox);
 		
-		googleLogin.username.setText("andrei.burdun");
-		googleLogin.password.setText("1 me pass");
+		//googleLogin.loginAs("usr", "pass");
+		
+		googleLogin.username.setText("usr");
+		googleLogin.password.setText("pass");
 		googleLogin.keepMeLogged.verifyCheckboxIsChecked();
+		googleLogin.keepMeLogged.unCheck();
 		googleLogin.signIn.verifyTextIs("Sign in");
 		googleLogin.signIn.click();
 		

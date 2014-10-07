@@ -30,4 +30,12 @@ public class CheckBox extends GeneralObject{
 	public void verifyCheckboxIsDisabled(){
 		Assert.assertFalse(checkbox.isEnabled());
 	}
+	
+	public void check(){
+		checkbox.click();
+	}
+	
+	public void unCheck(){
+		checkbox.click();
+	}
 }
