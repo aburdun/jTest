@@ -31,9 +31,8 @@ public class DropDown extends GeneralObject{
 		List<String> actualOptionsList = getAllOptionValues();
 		Assert.assertEquals(expectedOptionsList.length, actualOptionsList.size());
 		
-		for (String expectedOption : expectedOptionsList) {
+		for (String expectedOption : expectedOptionsList)
 			Assert.assertTrue(actualOptionsList.contains(expectedOption));;
-		}
 	}
 	
 	public void verifyOptionExist(String optionValue){

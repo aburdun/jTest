@@ -17,6 +17,11 @@ public class GeneralObject {
 		setGeneralObject();
 	}
 	
+	public GeneralObject(WebDriver browser, WebElement generalObject) {
+		this.browser = browser;
+		setGeneralObject(generalObject);
+	}
+	
 	private void setGeneralObject(){
 		switch (elementLocator) {
 			case "xpath":
@@ -40,7 +45,14 @@ public class GeneralObject {
 			case "partialLink":
 				generalObject = browser.findElement(By.partialLinkText(elementIdentifier));
 				break;
+			default:
+				//TBD
+				break;
 		}
+	}
+	
+	private void setGeneralObject(WebElement generalObject){
+		this.generalObject = generalObject;
 	}
 	
 	protected WebElement getGeneralObject() {

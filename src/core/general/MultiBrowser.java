@@ -12,7 +12,7 @@ public class MultiBrowser {
 		MultiBrowser.browser = browser;
 	}
 	
-	static void waitWhileLoading(WebDriver driver) {
+	public static void waitWhileLoading(WebDriver driver) {
 	    ExpectedCondition<Boolean> pageLoadCondition = new
 	        ExpectedCondition<Boolean>() {
 	            public Boolean apply(WebDriver driver) {

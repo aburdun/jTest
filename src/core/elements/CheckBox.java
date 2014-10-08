@@ -12,7 +12,12 @@ public class CheckBox extends GeneralObject{
 	
 	public CheckBox(WebDriver browser, String elementLocator, String elementIdentifier) {
 		super(browser, elementLocator, elementIdentifier);
-		checkbox = getGeneralObject();
+		checkbox = super.getGeneralObject();
+	}
+	
+	public CheckBox(WebDriver browser, WebElement generalObject) {
+		super(browser, generalObject);
+		checkbox = super.getGeneralObject();
 	}
 	
 	public void verifyCheckboxIsChecked(){
@@ -32,10 +37,12 @@ public class CheckBox extends GeneralObject{
 	}
 	
 	public void check(){
+		Assert.assertFalse(checkbox.isSelected());
 		checkbox.click();
 	}
 	
 	public void unCheck(){
+		Assert.assertTrue(checkbox.isSelected());
 		checkbox.click();
 	}
 }

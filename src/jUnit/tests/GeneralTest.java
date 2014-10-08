@@ -24,6 +24,11 @@ public class GeneralTest {
 		
 		testPage.gender.verifySelectedOptionIs("male");
 		
+		testPage.tableView.verifyNumberOfRowsIs(2);
+		testPage.tableView.verifyAllTableColumnsAre("ID;First Name;Completed;Salary");
+		testPage.tableView.checkCheckboxFromRowWithValueUnderColumn("14000", "Salary");
+		testPage.tableView.unCheckCheckboxFromRowWithValueUnderColumn("14000", "Salary");
+		
 		testPage.submitButton.verifyTextIs("Submit");
 		testPage.submitButton.click();
 		
