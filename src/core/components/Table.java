@@ -19,10 +19,10 @@ public class Table extends GeneralObject{
 	private static final String XPATH_FOR_HEADER 			= ".//thead/tr";
 	private static final String XPATH_FOR_ROW 				= ".//tbody/tr";
 	private static final String XPATH_FOR_CELL 				= ".//td";
-	private static final String XPATH_FOR_CELL_CHECKBOX 	= ".//input";
+	private static final String XPATH_FOR_CHECKBOX_CELL 	= ".//input";
 	
-	WebElement table;
-	Map<String, String> properties = new HashMap<String, String>();
+	private final WebElement table;
+	private final Map<String, String> properties = new HashMap<String, String>();
 
 	public Table(WebDriver browser) {
 		super(browser, "xpath", XPATH_FOR_TABLE);
@@ -121,6 +121,6 @@ public class Table extends GeneralObject{
 	}
 	
 	private void setElementProperties() {
-		properties.put("CheckBox", XPATH_FOR_CELL_CHECKBOX);
+		properties.put("CheckBox", XPATH_FOR_CHECKBOX_CELL);
 	}
 }

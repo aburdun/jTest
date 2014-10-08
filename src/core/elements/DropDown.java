@@ -13,7 +13,7 @@ import core.general.GeneralObject;
 
 public class DropDown extends GeneralObject{
 	
-	private static final String XPATCH_FOR_DROPDOWN_OPTION = ".//option";
+	private static final String XPATH_FOR_DROPDOWN_OPTION = ".//option";
 	
 	WebElement dropdown;
 	
@@ -57,7 +57,7 @@ public class DropDown extends GeneralObject{
 	//PRIVATE METHODS
 	
 	private List<WebElement> getAllOptionElements (){
-		List<WebElement> allOptionsElements = dropdown.findElements(By.xpath(XPATCH_FOR_DROPDOWN_OPTION));
+		List<WebElement> allOptionsElements = dropdown.findElements(By.xpath(XPATH_FOR_DROPDOWN_OPTION));
 		
 		return allOptionsElements;
 	}
