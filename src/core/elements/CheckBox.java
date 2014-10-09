@@ -31,7 +31,7 @@ public class CheckBox extends GeneralElement{
 	}
 	
 	public void verifyCheckboxIsDisabled(){
-		isFalse("", checkbox.isEnabled());
+		isFalse(" ", checkbox.isEnabled());
 	}
 	
 	public void check(){
