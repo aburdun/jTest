@@ -1,17 +1,17 @@
 package core.elements;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import core.general.GeneralObject;
+import static core.utils.AssertUtils.*;
 
-public class DropDown extends GeneralObject{
+public class DropDown extends GeneralElement{
 	
 	private static final String XPATH_FOR_DROPDOWN_OPTION = ".//option";
 	
@@ -23,24 +23,25 @@ public class DropDown extends GeneralObject{
 	}
 	
 	public void verifyNumberOfOptionsIs(int expectedNumberOfOptions){
-		Assert.assertEquals(expectedNumberOfOptions, getAllOptionElements().size());
+		isEqual("", expectedNumberOfOptions, getAllOptionElements().size());
 	}
 	
-	public void verifyAllOptionsAre(String expectedOptions){
+	public void verifyAllOptionsAreInOrder(String expectedOptions){
 		String[] expectedOptionsList = expectedOptions.split(";");
 		List<String> actualOptionsList = getAllOptionValues();
-		Assert.assertEquals(expectedOptionsList.length, actualOptionsList.size());
+		isEqual("", expectedOptionsList.length, actualOptionsList.size());
+		isTrue("", actualOptionsList.equals(Arrays.asList(expectedOptionsList)));
 		
 		for (String expectedOption : expectedOptionsList)
-			Assert.assertTrue(actualOptionsList.contains(expectedOption));;
+			isTrue("", actualOptionsList.contains(expectedOption));;
 	}
 	
 	public void verifyOptionExist(String optionValue){
-		Assert.assertTrue(getAllOptionValues().contains(optionValue));
+		isTrue("", getAllOptionValues().contains(optionValue));
 	}
 	
 	public void verifyOptionNotExist(String optionValue){
-		Assert.assertFalse(getAllOptionValues().contains(optionValue));
+		isFalse("", getAllOptionValues().contains(optionValue));
 	}
 	
 	public void selectOption(String optionValue){
@@ -50,7 +51,7 @@ public class DropDown extends GeneralObject{
 	
 	public void verifySelectedOptionIs(String optionValue){
 		WebElement selectedElement = new Select(dropdown).getFirstSelectedOption();
-		Assert.assertTrue(optionValue.equals(selectedElement.getText()));
+		isTrue("", optionValue.equals(selectedElement.getText()));
 	}
 	
 	

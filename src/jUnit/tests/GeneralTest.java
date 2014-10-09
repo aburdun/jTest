@@ -18,7 +18,7 @@ public class GeneralTest {
 		testPage.windows.verifyCheckboxIsDisabled();
 		
 		testPage.gender.verifyNumberOfOptionsIs(3);
-		testPage.gender.verifyAllOptionsAre("(please select);male;female");
+		testPage.gender.verifyAllOptionsAreInOrder("(please select);male;female");
 		testPage.gender.verifyOptionExist("male");
 		testPage.gender.selectOption("male");
 		

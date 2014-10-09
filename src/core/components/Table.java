@@ -8,12 +8,13 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 import core.elements.CheckBox;
-import core.general.GeneralObject;
+import core.elements.GeneralElement;
 
-public class Table extends GeneralObject{
+import static core.utils.AssertUtils.*;
+
+public class Table extends GeneralElement{
 	
 	private static final String XPATH_FOR_TABLE 			= "//table";
 	private static final String XPATH_FOR_HEADER 			= ".//thead/tr";
@@ -32,16 +33,16 @@ public class Table extends GeneralObject{
 	
 	public void verifyNumberOfRowsIs(int expectedNumberOfRows){
 		int actualNumberOfRows = getNumberOfRows();
-		Assert.assertEquals(actualNumberOfRows, expectedNumberOfRows);
+		isEqual("", actualNumberOfRows, expectedNumberOfRows);
 	}
 	
 	public void verifyAllTableColumnsAre(String expectedColumns){
 		String[] expectedColumnsList = expectedColumns.split(";");
 		List<String> actualColumnsList = getAllColumnNames();
-		Assert.assertEquals(expectedColumnsList.length, actualColumnsList.size());
+		isEqual("", expectedColumnsList.length, actualColumnsList.size());
 	
 		for (String expectedColumn : expectedColumnsList)
-			Assert.assertTrue(actualColumnsList.contains(expectedColumn));
+			isTrue("", actualColumnsList.contains(expectedColumn));
 	}
 	
 	public void checkCheckboxFromRowWithValueUnderColumn(String rowValue, String columnName){
@@ -79,7 +80,7 @@ public class Table extends GeneralObject{
 	
 	private int getIndexForColumn(String columnName){
 		List<String> allColumnNames = getAllColumnNames();
-		Assert.assertTrue(allColumnNames.contains(columnName));
+		isTrue("", allColumnNames.contains(columnName));
 		return allColumnNames.indexOf(columnName);
 	}
 	
@@ -108,7 +109,7 @@ public class Table extends GeneralObject{
 	
 	private WebElement getElementFromRowWithValueUnderColumn(String rowValue, String columnName, String elementType){
 		List<String> allValuesForColumn = getAllValuesUndeColumn(columnName);
-		Assert.assertTrue(allValuesForColumn.contains(rowValue));
+		isTrue("", allValuesForColumn.contains(rowValue));
 		int rowIndex = allValuesForColumn.indexOf(rowValue);
 		WebElement rowElement = getAllTableRows().get(rowIndex);
 		WebElement element = rowElement.findElement(By.xpath(getElementProperties(elementType)));

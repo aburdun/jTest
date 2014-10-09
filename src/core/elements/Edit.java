@@ -3,9 +3,7 @@ package core.elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import core.general.GeneralObject;
-
-public class Edit extends GeneralObject{
+public class Edit extends GeneralElement{
 	
 	WebElement edit;
 	

@@ -2,11 +2,9 @@ package core.elements;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
+import static core.utils.AssertUtils.*;
 
-import core.general.GeneralObject;
-
-public class Button extends GeneralObject{
+public class Button extends GeneralElement{
 	
 	WebElement button;
 	
@@ -16,7 +14,8 @@ public class Button extends GeneralObject{
 	}
 	
 	public void verifyTextIs(String buttonText){
+		String assertMessage = "\nVerify text from button is '" + buttonText + "'.\n";
 		String actualButtonText = button.getAttribute("value");
-		Assert.assertTrue(buttonText.equals(actualButtonText));
+		isTrue(assertMessage + "Failed. Text from button is '" + actualButtonText + "'.\n", buttonText.equals(actualButtonText));
 	}
 }

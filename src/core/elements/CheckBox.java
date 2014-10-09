@@ -1,12 +1,10 @@
 package core.elements;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import static core.utils.AssertUtils.*;
 
-import core.general.GeneralObject;
-
-public class CheckBox extends GeneralObject{
+public class CheckBox extends GeneralElement{
 	
 	WebElement checkbox;
 	
@@ -21,28 +19,28 @@ public class CheckBox extends GeneralObject{
 	}
 	
 	public void verifyCheckboxIsChecked(){
-		Assert.assertTrue(checkbox.isSelected());
+		isTrue("", checkbox.isSelected());
 	}
 	
 	public void verifyCheckboxIsNotChecked(){
-		Assert.assertFalse(checkbox.isSelected());
+		isFalse("", checkbox.isSelected());
 	}
 	
 	public void verifyCheckboxIsEnabled(){
-		Assert.assertTrue(checkbox.isEnabled());
+		isTrue("", checkbox.isEnabled());
 	}
 	
 	public void verifyCheckboxIsDisabled(){
-		Assert.assertFalse(checkbox.isEnabled());
+		isFalse("", checkbox.isEnabled());
 	}
 	
 	public void check(){
-		Assert.assertFalse(checkbox.isSelected());
+		isFalse("", checkbox.isSelected());
 		checkbox.click();
 	}
 	
 	public void unCheck(){
-		Assert.assertTrue(checkbox.isSelected());
+		isTrue("", checkbox.isSelected());
 		checkbox.click();
 	}
 }
