@@ -9,10 +9,15 @@ public class Edit extends GeneralElement{
 	
 	public Edit(WebDriver browser, String elementLocator, String elementIdentifier) {
 		super(browser, elementLocator, elementIdentifier);
-		edit = getGeneralObject();
 	}
 	
 	public void setText(String text){
+		setElement();
 		edit.sendKeys(text);
+	}
+	
+	private void setElement(){
+		super.setObject();
+		edit = getGeneralObject();
 	}
 }

@@ -22,21 +22,22 @@ public class Table extends GeneralElement{
 	private static final String XPATH_FOR_CELL 				= ".//td";
 	private static final String XPATH_FOR_CHECKBOX_CELL 	= ".//input";
 	
-	private final WebElement table;
+	private WebElement table;
 	private final Map<String, String> properties = new HashMap<String, String>();
 
 	public Table(WebDriver browser) {
 		super(browser, "xpath", XPATH_FOR_TABLE);
-		table = getGeneralObject();
 		setElementProperties();
 	}
 	
 	public void verifyNumberOfRowsIs(int expectedNumberOfRows){
+		setElement();
 		int actualNumberOfRows = getNumberOfRows();
 		isEqual("", actualNumberOfRows, expectedNumberOfRows);
 	}
 	
 	public void verifyAllTableColumnsAre(String expectedColumns){
+		setElement();
 		String[] expectedColumnsList = expectedColumns.split(";");
 		List<String> actualColumnsList = getAllColumnNames();
 		isEqual("", expectedColumnsList.length, actualColumnsList.size());
@@ -46,15 +47,22 @@ public class Table extends GeneralElement{
 	}
 	
 	public void checkCheckboxFromRowWithValueUnderColumn(String rowValue, String columnName){
+		setElement();
 		WebElement checkBoxElement = getElementFromRowWithValueUnderColumn(rowValue, columnName, "CheckBox");
 		CheckBox checkBox = new CheckBox(browser, checkBoxElement);
 		checkBox.check();
 	}
 	
 	public void unCheckCheckboxFromRowWithValueUnderColumn(String rowValue, String columnName){
+		setElement();
 		WebElement checkBoxElement = getElementFromRowWithValueUnderColumn(rowValue, columnName, "CheckBox");
 		CheckBox checkBox = new CheckBox(browser, checkBoxElement);
 		checkBox.unCheck();
+	}
+	
+	private void setElement(){
+		super.setObject();
+		table = getGeneralObject();
 	}
 	
 	private int getNumberOfRows(){

@@ -16,12 +16,29 @@ public class GeneralElement {
 		this.browser = browser;
 		this.elementLocator = elementLocator;
 		this.elementIdentifier = elementIdentifier;
-		setGeneralElement();
 	}
 	
-	public GeneralElement(WebDriver browser, WebElement generalObject) {
+	public GeneralElement(WebDriver browser, WebElement generalElement) {
 		this.browser = browser;
-		setGeneralObject(generalObject);
+		setGeneralObject(generalElement);
+	}
+	
+	public void click(){
+		generalElement.click();
+		MultiBrowser.waitWhileLoading(browser);
+	}
+	
+	private void setGeneralObject(WebElement generalElement){
+		this.generalElement = generalElement;
+	}
+	
+	protected WebElement getGeneralObject() {
+		return generalElement;
+	}
+	
+	protected void setObject(){
+		if (elementIdentifier != null)
+			setGeneralElement();
 	}
 	
 	private void setGeneralElement(){
@@ -51,18 +68,5 @@ public class GeneralElement {
 				//TBD
 				break;
 		}
-	}
-	
-	private void setGeneralObject(WebElement generalObject){
-		this.generalElement = generalObject;
-	}
-	
-	protected WebElement getGeneralObject() {
-		return generalElement;
-	}
-	
-	public void click(){
-		generalElement.click();
-		MultiBrowser.waitWhileLoading(browser);
 	}
 }
