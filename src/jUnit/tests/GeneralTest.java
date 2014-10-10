@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.tests.TestPage;
 
-public class GeneralTest {
+public class GeneralTest extends BaseTest{
 	public static void main(String[] args){
 		WebDriver firefox = new FirefoxDriver();
 		firefox.get("file:///E:/TestingFramework/jTest/src/jUnit/html/testPage.html");
@@ -18,6 +18,8 @@ public class GeneralTest {
 		testPage.windows.verifyCheckboxIsDisabled();
 		
 		testPage.gender.verifyNumberOfOptionsIs(3);
+//		testPage.gender.verifyNumberOfOptionsIs(4);
+//		testPage.gender.verifyNumberOfOptionsIs(4);
 		testPage.gender.verifyAllOptionsAreInOrder("(please select);male;female");
 		testPage.gender.verifyOptionExist("male");
 		testPage.gender.selectOption("male");
@@ -31,8 +33,11 @@ public class GeneralTest {
 		
 		testPage.submitButton.verifyTextIs("Submit");
 		testPage.submitButton.click();
+		testPage.submitButton.verifyExists();
+		testPage.cancelButton.verifyNotExists();
 		
 		firefox.close();
+		
+		tearDown(); //temp
 	}
-
 }

@@ -3,6 +3,7 @@ package core.elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import core.utils.TestAction;
 import static core.utils.AssertUtils.*;
 
 public class Button extends GeneralElement{
@@ -21,11 +22,13 @@ public class Button extends GeneralElement{
 		setElement();
 		String assertMessage = "\nVerify text from button is '" + buttonText + "'.\n";
 		String actualButtonText = button.getAttribute("value");
-		isTrue(assertMessage + "Failed. Text from button is '" + actualButtonText + "'.\n", buttonText.equals(actualButtonText));
+		isTrue(assertMessage + "Failed. Text from button is '" + actualButtonText + "'.\n", buttonText.equals(actualButtonText), TestAction.CONTINUE);
 	}
 	
 	private void setElement(){
 		super.setObject();
 		button = getGeneralObject();
 	}
+	
+	
 }

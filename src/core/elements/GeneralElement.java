@@ -1,10 +1,13 @@
 package core.elements;
 
-import org.openqa.selenium.By;
+import static core.utils.AssertUtils.isNotNull;
+import static core.utils.AssertUtils.isNull;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import core.utils.MultiBrowser;
+import core.utils.TestAction;
 
 public class GeneralElement {
 	public WebDriver browser;
@@ -24,6 +27,7 @@ public class GeneralElement {
 	}
 	
 	public void click(){
+		setObject();
 		generalElement.click();
 		MultiBrowser.waitWhileLoading(browser);
 	}
@@ -42,31 +46,24 @@ public class GeneralElement {
 	}
 	
 	private void setGeneralElement(){
-		switch (elementLocator) {
-			case "xpath":
-				generalElement = browser.findElement(By.xpath(elementIdentifier));
-				break;
-			case "id":
-				generalElement = browser.findElement(By.id(elementIdentifier));
-				break;
-			case "name":
-				generalElement = browser.findElement(By.name(elementIdentifier));
-				break;
-			case "class":
-				generalElement = browser.findElement(By.className(elementIdentifier));
-				break;
-			case "css":
-				generalElement = browser.findElement(By.cssSelector(elementIdentifier));
-				break;
-			case "tag":
-				generalElement = browser.findElement(By.tagName(elementIdentifier));
-				break;
-			case "partialLink":
-				generalElement = browser.findElement(By.partialLinkText(elementIdentifier));
-				break;
-			default:
-				//TBD
-				break;
-		}
+		generalElement = MultiBrowser.getElement(browser, elementLocator, elementIdentifier);
+		isNotNull	(
+					"\n"
+					+ "Failed. The element could not be found page!\n"
+					+ "Searched for: [" + elementLocator + ":" + elementIdentifier + "]\n"
+					, generalElement
+					, TestAction.STOP
+					);
 	}
+	
+	public void verifyExists(){
+		String assertMessage = "Verify element exists.\n";
+		isNotNull(assertMessage + "Failed. Element does not exists on page.\n", getGeneralObject(), TestAction.CONTINUE);
+	}
+	
+	public void verifyNotExists(){
+		String assertMessage = "Verify element does not exist.\n";
+		isNull(assertMessage + "Failed. Element exists on page.\n", getGeneralObject(), TestAction.CONTINUE);
+	}
+
 }

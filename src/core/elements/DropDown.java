@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import core.utils.TestAction;
 import static core.utils.AssertUtils.*;
 
 public class DropDown extends GeneralElement{
@@ -22,29 +23,30 @@ public class DropDown extends GeneralElement{
 	}
 	
 	public void verifyNumberOfOptionsIs(int expectedNumberOfOptions){
+		String assertMessage = "Verify number of option is '" + expectedNumberOfOptions + "'.\n";
 		setElement();
-		isEqual("", expectedNumberOfOptions, getAllOptionElements().size());
+		isEqual(assertMessage + "Failed. Expected '" + expectedNumberOfOptions + "' options, but there are '" +  getAllOptionElements().size() + "'.", expectedNumberOfOptions, getAllOptionElements().size(), TestAction.CONTINUE);
 	}
 	
 	public void verifyAllOptionsAreInOrder(String expectedOptions){
 		setElement();
 		String[] expectedOptionsList = expectedOptions.split(";");
 		List<String> actualOptionsList = getAllOptionValues();
-		isEqual("", expectedOptionsList.length, actualOptionsList.size());
-		isTrue("", actualOptionsList.equals(Arrays.asList(expectedOptionsList)));
+		isEqual("", expectedOptionsList.length, actualOptionsList.size(), TestAction.CONTINUE);
+		isTrue("", actualOptionsList.equals(Arrays.asList(expectedOptionsList)), TestAction.CONTINUE);
 		
 		for (String expectedOption : expectedOptionsList)
-			isTrue("", actualOptionsList.contains(expectedOption));;
+			isTrue("", actualOptionsList.contains(expectedOption), TestAction.CONTINUE);;
 	}
 	
 	public void verifyOptionExist(String optionValue){
 		setElement();
-		isTrue("", getAllOptionValues().contains(optionValue));
+		isTrue("", getAllOptionValues().contains(optionValue), TestAction.CONTINUE);
 	}
 	
 	public void verifyOptionNotExist(String optionValue){
 		setElement();
-		isFalse("", getAllOptionValues().contains(optionValue));
+		isFalse("", getAllOptionValues().contains(optionValue), TestAction.CONTINUE);
 	}
 	
 	public void selectOption(String optionValue){
@@ -56,7 +58,7 @@ public class DropDown extends GeneralElement{
 	public void verifySelectedOptionIs(String optionValue){
 		setElement();
 		WebElement selectedElement = new Select(dropdown).getFirstSelectedOption();
-		isTrue("", optionValue.equals(selectedElement.getText()));
+		isTrue("", optionValue.equals(selectedElement.getText()), TestAction.CONTINUE);
 	}
 	
 	

@@ -11,8 +11,9 @@ import org.openqa.selenium.WebElement;
 
 import core.elements.CheckBox;
 import core.elements.GeneralElement;
-
+import core.utils.TestAction;
 import static core.utils.AssertUtils.*;
+import static core.utils.MultiBrowser.*;
 
 public class Table extends GeneralElement{
 	
@@ -33,17 +34,17 @@ public class Table extends GeneralElement{
 	public void verifyNumberOfRowsIs(int expectedNumberOfRows){
 		setElement();
 		int actualNumberOfRows = getNumberOfRows();
-		isEqual("", actualNumberOfRows, expectedNumberOfRows);
+		isEqual("", actualNumberOfRows, expectedNumberOfRows, TestAction.CONTINUE);
 	}
 	
 	public void verifyAllTableColumnsAre(String expectedColumns){
 		setElement();
 		String[] expectedColumnsList = expectedColumns.split(";");
 		List<String> actualColumnsList = getAllColumnNames();
-		isEqual("", expectedColumnsList.length, actualColumnsList.size());
+		isEqual("", expectedColumnsList.length, actualColumnsList.size(), TestAction.CONTINUE);
 	
 		for (String expectedColumn : expectedColumnsList)
-			isTrue("", actualColumnsList.contains(expectedColumn));
+			isTrue("", actualColumnsList.contains(expectedColumn), TestAction.CONTINUE);
 	}
 	
 	public void checkCheckboxFromRowWithValueUnderColumn(String rowValue, String columnName){
@@ -88,7 +89,7 @@ public class Table extends GeneralElement{
 	
 	private int getIndexForColumn(String columnName){
 		List<String> allColumnNames = getAllColumnNames();
-		isTrue("", allColumnNames.contains(columnName));
+		isTrue("", allColumnNames.contains(columnName), TestAction.CONTINUE);
 		return allColumnNames.indexOf(columnName);
 	}
 	
@@ -117,10 +118,10 @@ public class Table extends GeneralElement{
 	
 	private WebElement getElementFromRowWithValueUnderColumn(String rowValue, String columnName, String elementType){
 		List<String> allValuesForColumn = getAllValuesUndeColumn(columnName);
-		isTrue("", allValuesForColumn.contains(rowValue));
+		isTrue("", allValuesForColumn.contains(rowValue), TestAction.CONTINUE);
 		int rowIndex = allValuesForColumn.indexOf(rowValue);
 		WebElement rowElement = getAllTableRows().get(rowIndex);
-		WebElement element = rowElement.findElement(By.xpath(getElementProperties(elementType)));
+		WebElement element = getElement(rowElement, "xpath", getElementProperties(elementType));
 
 		return element;
 	}

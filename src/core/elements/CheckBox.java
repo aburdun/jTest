@@ -2,6 +2,8 @@ package core.elements;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import core.utils.TestAction;
 import static core.utils.AssertUtils.*;
 
 public class CheckBox extends GeneralElement{
@@ -18,33 +20,33 @@ public class CheckBox extends GeneralElement{
 	
 	public void verifyCheckboxIsChecked(){
 		setElement();
-		isTrue("", checkbox.isSelected());
+		isTrue("", checkbox.isSelected(), TestAction.CONTINUE);
 	}
 	
 	public void verifyCheckboxIsNotChecked(){
 		setElement();
-		isFalse("", checkbox.isSelected());
+		isFalse("", checkbox.isSelected(), TestAction.CONTINUE);
 	}
 	
 	public void verifyCheckboxIsEnabled(){
 		setElement();
-		isTrue("", checkbox.isEnabled());
+		isTrue("", checkbox.isEnabled(), TestAction.CONTINUE);
 	}
 	
 	public void verifyCheckboxIsDisabled(){
 		setElement();
-		isFalse(" ", checkbox.isEnabled());
+		isFalse(" ", checkbox.isEnabled(), TestAction.CONTINUE);
 	}
 	
 	public void check(){
 		setElement();
-		isFalse("", checkbox.isSelected());
+		isFalse("", checkbox.isSelected(), TestAction.CONTINUE);
 		checkbox.click();
 	}
 	
 	public void unCheck(){
 		setElement();
-		isTrue("", checkbox.isSelected());
+		isTrue("", checkbox.isSelected(), TestAction.CONTINUE);
 		checkbox.click();
 	}
 	
