@@ -32,8 +32,9 @@ public class DropDown extends GeneralElement{
 		setElement();
 		String[] expectedOptionsList = expectedOptions.split(";");
 		List<String> actualOptionsList = getAllOptionValues();
-		isEqual("", expectedOptionsList.length, actualOptionsList.size(), TestAction.CONTINUE);
-		isTrue("", actualOptionsList.equals(Arrays.asList(expectedOptionsList)), TestAction.CONTINUE);
+		isEqual("Failed. Expected list of options: " + expectedOptions + 
+				"'. Actual list of columns: " + actualOptionsList, 
+				actualOptionsList, Arrays.asList(expectedOptionsList), TestAction.CONTINUE);
 	}
 	
 	public void verifyOptionExists(String optionValue){

@@ -1,6 +1,7 @@
 package core.components;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,10 +41,9 @@ public class Table extends GeneralElement{
 		setElement();
 		String[] expectedColumnsList = expectedColumns.split(";");
 		List<String> actualColumnsList = getAllColumnNames();
-		isEqual("", expectedColumnsList.length, actualColumnsList.size(), TestAction.CONTINUE);
-	
-		for (String expectedColumn : expectedColumnsList)
-			isTrue("", actualColumnsList.contains(expectedColumn), TestAction.CONTINUE);
+		isEqual("Failed. Expected list of columns: " + expectedColumns + 
+				"'. Actual list of columns: " + actualColumnsList, 
+				actualColumnsList, Arrays.asList(expectedColumnsList), TestAction.CONTINUE);
 	}
 	
 	public void checkCheckboxFromRowWithValueUnderColumn(String rowValue, String columnName){
