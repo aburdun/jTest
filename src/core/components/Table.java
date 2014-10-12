@@ -17,7 +17,6 @@ import static core.utils.MultiBrowser.*;
 
 public class Table extends GeneralElement{
 	
-	private static final String XPATH_FOR_TABLE 			= "//table";
 	private static final String XPATH_FOR_HEADER 			= ".//thead/tr";
 	private static final String XPATH_FOR_ROW 				= ".//tbody/tr";
 	private static final String XPATH_FOR_CELL 				= ".//td";
@@ -26,8 +25,8 @@ public class Table extends GeneralElement{
 	private WebElement table;
 	private final Map<String, String> properties = new HashMap<String, String>();
 
-	public Table(WebDriver browser) {
-		super(browser, "xpath", XPATH_FOR_TABLE);
+	public Table(WebDriver browser, String elementLocator, String elementIdentifier) {
+		super(browser, elementLocator, elementIdentifier);
 		setElementProperties();
 	}
 	

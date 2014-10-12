@@ -57,6 +57,7 @@ public class GeneralElement {
 	}
 	
 	public void verifyExists(){
+		setObject();
 		String assertMessage = "Verify element exists.\n";
 		isNotNull(assertMessage + "Failed. Element does not exists on page.\n", getGeneralObject(), TestAction.CONTINUE);
 	}

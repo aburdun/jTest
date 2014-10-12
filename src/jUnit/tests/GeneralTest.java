@@ -21,7 +21,8 @@ public class GeneralTest extends BaseTest{
 //		testPage.gender.verifyNumberOfOptionsIs(4);
 //		testPage.gender.verifyNumberOfOptionsIs(4);
 		testPage.gender.verifyAllOptionsAreInOrder("(please select);male;female");
-		testPage.gender.verifyOptionExist("male");
+		testPage.gender.verifyOptionExists("male");
+		testPage.gender.verifyOptionDoesNotExist("not");
 		testPage.gender.selectOption("male");
 		
 		testPage.gender.verifySelectedOptionIs("male");
@@ -31,6 +32,13 @@ public class GeneralTest extends BaseTest{
 		testPage.tableView.checkCheckboxFromRowWithValueUnderColumn("14000", "Salary");
 		testPage.tableView.unCheckCheckboxFromRowWithValueUnderColumn("14000", "Salary");
 		
+		testPage.genderRadio.verifyExists();
+		testPage.genderRadio.verifyNumberOfOptionsIs(2);
+		testPage.genderRadio.selectOption("female");
+		testPage.genderRadio.verifyOptionIsSelected("female");
+		testPage.genderRadio.verifyOptionIsNotSelected("male");
+		
+//		testPage.submitButton.verifyTextIs("Login");
 		testPage.submitButton.verifyTextIs("Submit");
 		testPage.submitButton.click();
 		testPage.submitButton.verifyExists();

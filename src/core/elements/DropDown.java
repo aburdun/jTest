@@ -34,24 +34,21 @@ public class DropDown extends GeneralElement{
 		List<String> actualOptionsList = getAllOptionValues();
 		isEqual("", expectedOptionsList.length, actualOptionsList.size(), TestAction.CONTINUE);
 		isTrue("", actualOptionsList.equals(Arrays.asList(expectedOptionsList)), TestAction.CONTINUE);
-		
-		for (String expectedOption : expectedOptionsList)
-			isTrue("", actualOptionsList.contains(expectedOption), TestAction.CONTINUE);;
 	}
 	
-	public void verifyOptionExist(String optionValue){
+	public void verifyOptionExists(String optionValue){
 		setElement();
 		isTrue("", getAllOptionValues().contains(optionValue), TestAction.CONTINUE);
 	}
 	
-	public void verifyOptionNotExist(String optionValue){
+	public void verifyOptionDoesNotExist(String optionValue){
 		setElement();
 		isFalse("", getAllOptionValues().contains(optionValue), TestAction.CONTINUE);
 	}
 	
 	public void selectOption(String optionValue){
 		setElement();
-		verifyOptionExist(optionValue);
+		verifyOptionExists(optionValue);
 		new Select(dropdown).selectByVisibleText(optionValue);
 	}
 	
@@ -60,7 +57,6 @@ public class DropDown extends GeneralElement{
 		WebElement selectedElement = new Select(dropdown).getFirstSelectedOption();
 		isTrue("", optionValue.equals(selectedElement.getText()), TestAction.CONTINUE);
 	}
-	
 	
 	//PRIVATE METHODS
 	

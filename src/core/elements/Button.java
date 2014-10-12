@@ -20,9 +20,9 @@ public class Button extends GeneralElement{
 	
 	public void verifyTextIs(String buttonText){
 		setElement();
-		String assertMessage = "\nVerify text from button is '" + buttonText + "'.\n";
+		String assertMessage = "Verify text from button is '" + buttonText + "'.\n";
 		String actualButtonText = button.getAttribute("value");
-		isTrue(assertMessage + "Failed. Text from button is '" + actualButtonText + "'.\n", buttonText.equals(actualButtonText), TestAction.CONTINUE);
+		isTrue(assertMessage + "Failed. Text from button is '" + actualButtonText + "'.", buttonText.equals(actualButtonText), TestAction.CONTINUE);
 	}
 	
 	private void setElement(){

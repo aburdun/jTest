@@ -44,7 +44,7 @@ function show(){
 	</br>
 	
 	<div class="table">
-		<table border="1">
+		<table border="1" name="employees">
 			<thead>
 				<td>ID</td>
 				<td>First Name</td>
@@ -69,7 +69,14 @@ function show(){
 			<option name="select" value="-1">(please select)</option>
 			<option name="m" value="1">male</option>
 			<option name="f" value="0">female</option>
-		</select>		
+		</select>	
+		</br>
+		</br>
+		<div class="gender" role="radiogroup" id="genderRadio">
+			<input type="radio" name="sex" value="male" />Male<br>
+			<input type="radio" name="sex" value="female" />Female
+		</div>
+		<br>
 	</div>
 	
 </div>

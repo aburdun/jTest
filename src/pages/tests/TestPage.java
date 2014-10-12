@@ -2,6 +2,7 @@ package pages.tests;
 
 import org.openqa.selenium.WebDriver;
 
+import core.components.RadioGroup;
 import core.components.Table;
 import core.elements.Button;
 import core.elements.CheckBox;
@@ -16,6 +17,7 @@ public class TestPage { //temp
 	public CheckBox android, iOS, windows;
 	public DropDown gender;
 	public Table tableView;
+	public RadioGroup genderRadio;
 	
 	public TestPage(WebDriver browser){
 		this.browser = browser;
@@ -29,6 +31,7 @@ public class TestPage { //temp
 		iOS	= new CheckBox(browser, SearchType.ID, "iOS");
 		windows	= new CheckBox(browser, SearchType.ID, "windows");
 		gender = new DropDown(browser, SearchType.NAME, "gender");
-		tableView = new Table(browser);
+		tableView = new Table(browser, SearchType.NAME, "employees");
+		genderRadio = new RadioGroup(browser, SearchType.ID, "genderRadio");
 	}
 }
