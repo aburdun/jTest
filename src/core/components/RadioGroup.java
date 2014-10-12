@@ -30,14 +30,15 @@ public class RadioGroup extends GeneralElement {
 	public void selectOption(String optionName){
 		super.setObject();
 		WebElement optionElement = getOptionByName(optionName);
-		isNotNull("Object is null.", optionElement, TestAction.CONTINUE);
-		optionElement.click();;
+		isNotNull("Failed. Could not find the option name '" + optionName + "'.", optionElement, TestAction.CONTINUE);
+		if (optionElement!=null)
+			optionElement.click();
 	}
 	
 	public void verifyOptionIsSelected(String optionName){
 		super.setObject();
 		WebElement optionElement = getOptionByName(optionName);
-		isTrue("", optionElement.isSelected(), TestAction.CONTINUE);
+		isTrue("Failed. Option name '" + optionName + "' is not selected." , optionElement.isSelected(), TestAction.CONTINUE);
 	}
 	
 	public void verifyOptionIsNotSelected(String optionName){

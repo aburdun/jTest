@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import core.utils.MultiBrowser;
 import core.utils.TestAction;
 
-public class GeneralElement {
+public class GeneralElement{
 	public WebDriver browser;
 	public String elementLocator;
 	public String elementIdentifier;
@@ -28,8 +28,11 @@ public class GeneralElement {
 	
 	public void click(){
 		setObject();
-		generalElement.click();
-		MultiBrowser.waitWhileLoading(browser);
+		isNotNull("Object is null", generalElement, TestAction.CONTINUE);
+		if (generalElement != null){
+			generalElement.click();
+			MultiBrowser.waitWhileLoading(browser);
+		}
 	}
 	
 	private void setGeneralObject(WebElement generalElement){
@@ -66,5 +69,4 @@ public class GeneralElement {
 		String assertMessage = "Verify element does not exist.\n";
 		isNull(assertMessage + "Failed. Element exists on page.\n", getGeneralObject(), TestAction.CONTINUE);
 	}
-
 }
