@@ -18,7 +18,7 @@ public class GeneralTest extends BaseTest{
 		testPage.windows.verifyCheckboxIsDisabled();
 		
 		testPage.gender.verifyNumberOfOptionsIs(3);
-//		testPage.gender.verifyNumberOfOptionsIs(4);
+//		testPage.gender.verifyNumberOfOptionsIs(5);
 //		testPage.gender.verifyNumberOfOptionsIs(4);
 		testPage.gender.verifyAllOptionsAreInOrder("(please select);male;female");
 		testPage.gender.verifyOptionExists("male");
