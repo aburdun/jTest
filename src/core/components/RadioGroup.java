@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import core.elements.GeneralElement;
+import core.utils.MessageCollector;
 import core.utils.TestAction;
 
 public class RadioGroup extends GeneralElement {
@@ -17,20 +18,20 @@ public class RadioGroup extends GeneralElement {
 
 	private WebElement radiogroup;
 
-	public RadioGroup(WebDriver browser, String elementLocator, String elementIdentifier) {
-		super(browser, elementLocator, elementIdentifier);
+	public RadioGroup(WebDriver browser, String elementLocator, String elementIdentifier, MessageCollector collector) {
+		super(browser, elementLocator, elementIdentifier, collector);
 	}
 	
 	public void verifyNumberOfOptionsIs(int expectedNumberOfOptions){
 		setElement();
 		int actualNumberOfOptions = getAllOptions().size();
-		isEqual("", actualNumberOfOptions, expectedNumberOfOptions, TestAction.CONTINUE);
+		isEqual("", actualNumberOfOptions, expectedNumberOfOptions, TestAction.CONTINUE, browser, collector);
 	}
 	
 	public void selectOption(String optionName){
 		super.setObject();
 		WebElement optionElement = getOptionByName(optionName);
-		isNotNull("Failed. Could not find the option name '" + optionName + "'.", optionElement, TestAction.CONTINUE);
+		isNotNull("Failed. Could not find the option name '" + optionName + "'.", optionElement, TestAction.CONTINUE, browser, collector);
 		if (optionElement!=null)
 			optionElement.click();
 	}
@@ -38,13 +39,13 @@ public class RadioGroup extends GeneralElement {
 	public void verifyOptionIsSelected(String optionName){
 		super.setObject();
 		WebElement optionElement = getOptionByName(optionName);
-		isTrue("Failed. Option name '" + optionName + "' is not selected." , optionElement.isSelected(), TestAction.CONTINUE);
+		isTrue("Failed. Option name '" + optionName + "' is not selected." , optionElement.isSelected(), TestAction.CONTINUE, browser, collector);
 	}
 	
 	public void verifyOptionIsNotSelected(String optionName){
 		super.setObject();
 		WebElement optionElement = getOptionByName(optionName);
-		isFalse("", optionElement.isSelected(), TestAction.CONTINUE);
+		isFalse("", optionElement.isSelected(), TestAction.CONTINUE, browser, collector);
 	}
 	
 	private List<WebElement> getAllOptions(){

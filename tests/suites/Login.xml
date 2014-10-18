@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Login" parallel="tests" thread-count="2">
+	<listeners>
+    	<listener class-name="reporting.CustomReporter" />
+  	</listeners>
+	<test name="VerifyGeneralElementsOnPage">
+    	<classes>
+        	<class name="tests.suites.login.VerifyGeneralElementsOnPage"></class>
+    	</classes>
+	</test>
+	<test name="VerifyLoginIsSuccessfulWithValidCredentials">
+    	<classes>
+       	 	<class name="tests.suites.login.VerifyLoginIsSuccessfulWithValidCredentials"></class>
+   	 	</classes>
+	</test>
+	<test name="VerifyLoginIsNotSuccessfulWithInvalidCredentials">
+    	<classes>
+        	<class name="tests.suites.login.VerifyLoginIsNotSuccessfulWithInvalidCredentials"></class>
+   	 	</classes>
+	</test>
+</suite>

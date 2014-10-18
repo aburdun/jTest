@@ -1,0 +1,5 @@
+<suite name="allSuites">
+     <suite-files>
+        <suite-file path="tests/suites/Login.xml" />
+     </suite-files>
+</suite>

@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 
 import core.elements.CheckBox;
 import core.elements.GeneralElement;
+import core.utils.MessageCollector;
 import core.utils.TestAction;
 import static core.utils.AssertUtils.*;
 import static core.utils.MultiBrowser.*;
@@ -26,15 +27,15 @@ public class Table extends GeneralElement{
 	private WebElement table;
 	private final Map<String, String> properties = new HashMap<String, String>();
 
-	public Table(WebDriver browser, String elementLocator, String elementIdentifier) {
-		super(browser, elementLocator, elementIdentifier);
+	public Table(WebDriver browser, String elementLocator, String elementIdentifier, MessageCollector collector) {
+		super(browser, elementLocator, elementIdentifier, collector);
 		setElementProperties();
 	}
 	
 	public void verifyNumberOfRowsIs(int expectedNumberOfRows){
 		setElement();
 		int actualNumberOfRows = getNumberOfRows();
-		isEqual("", actualNumberOfRows, expectedNumberOfRows, TestAction.CONTINUE);
+		isEqual("", actualNumberOfRows, expectedNumberOfRows, TestAction.CONTINUE, browser, collector);
 	}
 	
 	public void verifyAllTableColumnsAre(String expectedColumns){
@@ -43,20 +44,20 @@ public class Table extends GeneralElement{
 		List<String> actualColumnsList = getAllColumnNames();
 		isEqual("Failed. Expected list of columns: " + expectedColumns + 
 				"'. Actual list of columns: " + actualColumnsList, 
-				actualColumnsList, Arrays.asList(expectedColumnsList), TestAction.CONTINUE);
+				actualColumnsList, Arrays.asList(expectedColumnsList), TestAction.CONTINUE, browser, collector);
 	}
 	
 	public void checkCheckboxFromRowWithValueUnderColumn(String rowValue, String columnName){
 		setElement();
 		WebElement checkBoxElement = getElementFromRowWithValueUnderColumn(rowValue, columnName, "CheckBox");
-		CheckBox checkBox = new CheckBox(browser, checkBoxElement);
+		CheckBox checkBox = new CheckBox(browser, checkBoxElement, collector);
 		checkBox.check();
 	}
 	
 	public void unCheckCheckboxFromRowWithValueUnderColumn(String rowValue, String columnName){
 		setElement();
 		WebElement checkBoxElement = getElementFromRowWithValueUnderColumn(rowValue, columnName, "CheckBox");
-		CheckBox checkBox = new CheckBox(browser, checkBoxElement);
+		CheckBox checkBox = new CheckBox(browser, checkBoxElement, collector);
 		checkBox.unCheck();
 	}
 	
@@ -88,7 +89,7 @@ public class Table extends GeneralElement{
 	
 	private int getIndexForColumn(String columnName){
 		List<String> allColumnNames = getAllColumnNames();
-		isTrue("", allColumnNames.contains(columnName), TestAction.CONTINUE);
+		isTrue("", allColumnNames.contains(columnName), TestAction.CONTINUE, browser, collector);
 		return allColumnNames.indexOf(columnName);
 	}
 	
@@ -117,7 +118,7 @@ public class Table extends GeneralElement{
 	
 	private WebElement getElementFromRowWithValueUnderColumn(String rowValue, String columnName, String elementType){
 		List<String> allValuesForColumn = getAllValuesUndeColumn(columnName);
-		isTrue("", allValuesForColumn.contains(rowValue), TestAction.CONTINUE);
+		isTrue("", allValuesForColumn.contains(rowValue), TestAction.CONTINUE, browser, collector);
 		int rowIndex = allValuesForColumn.indexOf(rowValue);
 		WebElement rowElement = getAllTableRows().get(rowIndex);
 		WebElement element = getElement(rowElement, "xpath", getElementProperties(elementType));
