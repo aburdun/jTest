@@ -29,7 +29,7 @@ public class RadioGroup extends GeneralElement {
 	}
 	
 	public void selectOption(String optionName){
-		super.setObject();
+		setElement();
 		WebElement optionElement = getOptionByName(optionName);
 		isNotNull("Failed. Could not find the option name '" + optionName + "'.", optionElement, TestAction.CONTINUE, browser, collector);
 		if (optionElement!=null)
@@ -37,13 +37,13 @@ public class RadioGroup extends GeneralElement {
 	}
 	
 	public void verifyOptionIsSelected(String optionName){
-		super.setObject();
+		setElement();
 		WebElement optionElement = getOptionByName(optionName);
 		isTrue("Failed. Option name '" + optionName + "' is not selected." , optionElement.isSelected(), TestAction.CONTINUE, browser, collector);
 	}
 	
 	public void verifyOptionIsNotSelected(String optionName){
-		super.setObject();
+		setElement();
 		WebElement optionElement = getOptionByName(optionName);
 		isFalse("", optionElement.isSelected(), TestAction.CONTINUE, browser, collector);
 	}
