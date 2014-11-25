@@ -17,8 +17,8 @@ public class VerifyLoginIsSuccessfulWithValidCredentials extends BaseTest{
 		
 //		googleLogin.loginAs("usr", "pass");
 		
-		googleLogin.username.setText("andrei.burdun");
-		googleLogin.password.setText("1 me pass");
+		googleLogin.username.setText("valid_user");
+		googleLogin.password.setText("valid_password");
 		googleLogin.keepMeLogged.verifyCheckboxIsChecked();
 		googleLogin.keepMeLogged.unCheck();
 		googleLogin.signIn.verifyTextIs("Sign in");
