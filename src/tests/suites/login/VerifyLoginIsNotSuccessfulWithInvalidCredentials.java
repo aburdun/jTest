@@ -17,8 +17,8 @@ public class VerifyLoginIsNotSuccessfulWithInvalidCredentials extends BaseTest{
 		
 //		googleLogin.loginAs("usr", "pass");
 		
-		googleLogin.username.setText("user");
-		googleLogin.password.setText("1 me pass");
+		googleLogin.username.setText("invalid_user");
+		googleLogin.password.setText("password");
 		googleLogin.keepMeLogged.verifyCheckboxIsChecked();
 		googleLogin.keepMeLogged.unCheck();
 		googleLogin.signIn.verifyTextIs("Sign in");
